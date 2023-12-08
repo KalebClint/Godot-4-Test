@@ -10,6 +10,10 @@ var flipping = false
 var flipped = false
 var wallJumped = false
 
+var slamming = false
+var slamRecovering = false
+var slamRecoverTime = 2
+
 var canWallJump = false
 
 @onready var spawn = $"../Spawn"
@@ -62,8 +66,17 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY - 3
 		flippingIt()
 		flipped = true;
-	
-
+		
+		
+	if Input.is_action_just_pressed("Shift"):
+		if is_on_floor():
+			slamming = true
+			
+			velocity.y = JUMP_VELOCITY * 2.5
+			await get_tree().create_timer(0.4).timeout
+			velocity.y = -JUMP_VELOCITY * 2.5
+		
+		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("Left", "right", "forward", "Backward")
