@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7kra2yfanik6"]
+
+[ext_resource type="PackedScene" uid="uid://b1gmg3v6od6i0" path="res://Assets/platform.tscn" id="1_m1rmx"]
+[ext_resource type="PackedScene" uid="uid://d26n3q7ee3gdn" path="res://Assets/cuebo.tscn" id="2_7y5gg"]
+[ext_resource type="PackedScene" uid="uid://ds7ibke1spekf" path="res://Assets/Wall.tscn" id="3_c6v1d"]
+
+[node name="GameManager" type="Node3D"]
+
+[node name="Platforms" type="Node3D" parent="."]
+
+[node name="Platform2" parent="Platforms" instance=ExtResource("1_m1rmx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Platform3" parent="Platforms" instance=ExtResource("1_m1rmx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3)
+
+[node name="Platform4" parent="Platforms" instance=ExtResource("1_m1rmx")]
+transform = Transform3D(0.999798, 0.0201048, 0, -0.0201048, 0.999798, 0, 0, 0, 1, 4.07059, 0, -2)
+
+[node name="Platform5" parent="Platforms" instance=ExtResource("1_m1rmx")]
+transform = Transform3D(5.99132, 0.0213341, 0, -0.120479, 1.06093, 0, 0, 0, 5.74769, 47.9281, 0, -2)
+
+[node name="Platform" parent="Platforms" instance=ExtResource("1_m1rmx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 1)
+
+[node name="Cuebo" parent="." instance=ExtResource("2_7y5gg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.63935, 0.00566668, 0.814061)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.816672, -0.577102, -5.21746e-08, 0.574145, 0.812487, 0.101108, -0.0583498, -0.0825724, 0.994875, -0.310724, 6.90683, 3.54761)
+
+[node name="Wall" parent="." instance=ExtResource("3_c6v1d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.417, 0, -6.17693)
+
+[node name="Wall2" parent="." instance=ExtResource("3_c6v1d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5116, 0, 0.875661)
+
+[node name="Spawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.01385, 0.468033, 0.877308)

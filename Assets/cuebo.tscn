@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://d26n3q7ee3gdn"]
+
+[ext_resource type="Script" path="res://Assets/cuebo.gd" id="1_i60xf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_k2rkh"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_t3gtm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7iwwl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pa7oc"]
+size = Vector3(0.902511, 0.37833, 0.870218)
+
+[node name="Cuebo" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.826558, 0)
+script = ExtResource("1_i60xf")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_k2rkh")
+
+[node name="Head" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.756494, 0, 0, 0, 0.756494, 0, 0, 0, 0.756494, 0, 0.240897, -0.456491)
+mesh = SubResource("SphereMesh_t3gtm")
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.992128, 0)
+shape = SubResource("BoxShape3D_7iwwl")
+
+[node name="CameraMount" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.836652, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraMount"]
+transform = Transform3D(1, 0, 0, 0, 0.941946, 0.335764, 0, -0.335764, 0.941946, 0, 1.30034, 2.37364)
+
+[node name="WallJumper" type="Area3D" parent="."]
+transform = Transform3D(1.75376, 0, 0, 0, 1, 0, 0, 0, 1, 0.603041, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallJumper"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.34375, 1.01295, 0)
+shape = SubResource("BoxShape3D_pa7oc")
+
+[connection signal="body_entered" from="WallJumper" to="." method="_on_wall_jumper_body_entered"]
+[connection signal="body_exited" from="WallJumper" to="." method="_on_wall_jumper_body_exited"]
